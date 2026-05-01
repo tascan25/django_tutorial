@@ -16,22 +16,25 @@ challenge_texts = {
         "september":"Learn Django for at least 20 minutes every day",
         "october":"Eat no meat for the entire month",
         "november":"Walk for at least 20 minutes every day",
-        "december":"Learn Django for at least 20 minutes every day",
+        "december":None,
     }
 
 
 
+# def index(request):
+#     month_tag = []
+#     months = list(challenge_texts.keys())
+#     for month in months:
+#         capitalize_month = month.capitalize()
+#         redirect_path = reverse('monthly-challenge',args=[month])
+#         month_tag.append(f"<li><a href='{redirect_path}'>{capitalize_month}</a></li>")
+#     # response_data = f"<ul> {''.join(month_tag)}</ul>"  
+#     # return HttpResponse(response_data)
+#     return render(request,"challenges/index.html", {"tags": month_tag})
+
 def index(request):
-    month_tag = []
     months = list(challenge_texts.keys())
-    for month in months:
-        capitalize_month = month.capitalize()
-        redirect_path = reverse('monthly-challenge',args=[month])
-        month_tag.append(f"<li><a href='{redirect_path}'>{capitalize_month}</a></li>")
-    response_data = f"<ul> {
-        ''.join(month_tag)
-    }</ul>" 
-    return HttpResponse(response_data)
+    return render(request,"challenges/index.html", {"months":months})
 
 def monthly_challenges_number(request,month):
     try:
@@ -44,8 +47,11 @@ def monthly_challenges_number(request,month):
 
 def monthly_challenge(request, month):
     try:
-        # returned_html = f'<h1>{challenge_texts[month]}</h1>'
-        returned_html = render_to_string("challenges/challenge.html")
-        return HttpResponse(returned_html)
+        # returned_html = render_to_string("challenges/challenge.html")
+        challenge_text = challenge_texts[month]
+        return render(request, 'challenges/challenge.html',{
+            "challenge_text":challenge_text,
+            "challenge_month":month
+        })
     except KeyError:
-        return HttpResponseNotFound("This month is not supported")
+        return HttpResponseNotFound("This month is not supported") 

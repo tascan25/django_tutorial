@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("",views.index),
+    path("",views.index, name="index"),
      path("<int:month>", views.monthly_challenges_number, name="monthly-challenge-number"),
     path("<str:month>",views.monthly_challenge, name="monthly-challenge"),
     #the above implementation is of the dynamic urls, where we can pass the month as a parameter and the view will return the challenge for that month

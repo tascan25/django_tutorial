@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Challenges</title>
-</head>
-<body>
-    <h1>this will be our first django html file</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+    {% block page_title %}
+     Monthly Challenges - {{challenge_month | title }}
+    {% endblock page_title %}
+   
+    {% block content %}
+    {% include "challenges/includes/header.html" with active_page="challenge"%}
+       <h1>{{challenge_month | title}}</h1>
+    {% if challenge_text == None %}
+        <h2> There is no challenge is decided for this month yet</h2>
+    {% else %}
+              <h2>{{challenge_text}}</h2>
+    {% endif %}
+    {% endblock content %}
+ 
+  
