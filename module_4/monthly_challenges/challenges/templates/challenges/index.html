@@ -1,7 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block page_title %}{% endblock page_title %}
+{% block page_title %}
     <title>Monthly Challenges List</title>
+{% endblock page_title %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "challenges/challenges.css" %}"/>
+{% endblock css_files %}
 
 
 
