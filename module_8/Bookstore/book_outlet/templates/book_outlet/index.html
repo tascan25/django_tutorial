@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Books
+{% endblock title %}
+
+{% block content %}
+<h1>
+    This will be the landing page for the book outlet store
+    <ul>
+        {% for book in books%}
+        <a href="{{book.get_absolute_url}}">
+            <li>
+            {{book.title}} - {{book.author}}
+        </li>
+        </a>
+        
+        {% endfor %}
+    </ul>
+</h1>
+{% endblock content %}

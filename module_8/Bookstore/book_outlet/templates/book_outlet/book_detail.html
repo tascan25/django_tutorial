@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Book Details - {{title}}
+{% endblock title %}
+
+{% block content %}
+<h1>
+    The detailed information about the book is goes as follows
+</h1>
+
+<div>
+<h1>name:{{title}}</h1>
+<h1>
+    Author:{{author}}
+</h1>
+<h1>
+    Rating:{{rating}}
+</h1>
+{% if is_bestselling %}
+    <h1>
+    It is a bestseller
+</h1>
+{% else %}
+<h1>
+    but it's not a best seller
+</h1>
+{% endif %}
+
+</div>
+{% endblock content %}
