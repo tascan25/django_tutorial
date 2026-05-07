@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Reviews page
+{% endblock title %}
+
+{% block content %}
+<form action="/" method='POST'>
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Send</button>
+</form>
+{% endblock content %}
