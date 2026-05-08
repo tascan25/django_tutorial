@@ -5,10 +5,22 @@
 Reviews page
 {% endblock title %}
 
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "reviews/review.css" %}">
+{% endblock css_files %}
+
 {% block content %}
-<form action="/" method='POST'>
+<form action="/" method='POST' >
     {% csrf_token %}
-    {{form}}
+    {% for field in form  %}
+    <div class = "form-control {% if field.errors %}errors{% endif %}">
+    {{field.label_tag}}
+    {{field}}
+    {{field.errors}}
+    </div>
+    {% endfor %}
+  
+
     <button type="submit">Send</button>
 </form>
 {% endblock content %}
