@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+All Profiles
+{% endblock title %}
+
+{% block content %}
+<ul>
+    {% for profile in profiles %}
+    <li>
+        <img src="{{profile.image.url}}" alt="{{profile.image.path}}">
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
+
