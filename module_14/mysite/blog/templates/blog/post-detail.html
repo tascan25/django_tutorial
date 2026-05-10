@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Post Detail page
+{% endblock title %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/post-detail.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+<section id="summary">
+    <div class="container">
+        <h2>{{detailedPost.title}}</h2>
+    <div class = "tagcont">
+        {% for tag in detailedPost.tag.all %}
+        <span class="Tag">{{tag.caption}}</span>
+        {% endfor %}
+    </div>
+    </div>
+    
+    <article>
+        <img src="{% static "{{ detailedPost.image.url }}" alt="{{detailedPost.title}}">
+        <address>By <a href="mailto:{{authoremail}}">{{detailedPost.author}}</a></address>
+        <div>
+            last updated on <time datetime="">{{detailedPost.date|date:"d M Y"}}</time>
+        </div>
+    </article>
+</section>
+
+<main>
+    <p>
+        {{detailedPost.content|linebreaks}}
+    </p>
+</main>
+{% endblock content %}
