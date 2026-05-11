@@ -21,8 +21,8 @@ Post Detail page
     </div>
     
     <article>
-        <img src="{% static "{{ detailedPost.image.url }}" alt="{{detailedPost.title}}">
-        <address>By <a href="mailto:{{authoremail}}">{{detailedPost.author}}</a></address>
+        <img src="{{ detailedPost.image.url }}" alt="{{detailedPost.title}}">
+        <address>By <a href="mailto:{{detailedPost.author.email_address}}">{{detailedPost.author}}</a></address>
         <div>
             last updated on <time datetime="">{{detailedPost.date|date:"d M Y"}}</time>
         </div>
@@ -34,4 +34,42 @@ Post Detail page
         {{detailedPost.content|linebreaks}}
     </p>
 </main>
+
+<form action="{% url "read_later" %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" value="{{detailedPost.id}}" name="post_id">
+    <button id="read-later">
+    Read Later
+</button>
+</form>
+
+
+<section id="comments">
+    <ul>
+        {% for comment in comments  %}
+        <li>
+            <h2>{{comment.user_name}}</h2>
+            <p>{{comment.text|linebreaks}}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section id="comment-form">
+    <h2>Your Comment</h2>
+    <form action="{% url "posts_detail_page" detailedPost.slug %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-control">
+             {{field.label_tag}}
+            {{field}}
+            {{field.errors}}
+        </div>
+           
+        {% endfor %}
+
+        <button type="submit">Save Comment</button>
+    </form>
+    
+</section>
 {% endblock content %}

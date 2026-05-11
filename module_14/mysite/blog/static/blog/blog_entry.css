@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink:        #1a1a18;
+  --paper:      #f5f2eb;
+  --accent:     #c0392b;
+  --muted:      #8a8070;
+  --border:     #d6d0c4;
+  --field-bg:   #faf8f4;
+  --error:      #c0392b;
+  --radius:     4px;
+  --font-head:  'Playfair Display', Georgia, serif;
+  --font-body:  'DM Sans', sans-serif;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+/* ── Nav (base.html header) ── */
+#main-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 4rem;
+  border-bottom: 1.5px solid var(--border);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#main-navigation h1 {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#main-navigation h1 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+#main-navigation nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+#main-navigation nav a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#main-navigation nav a:hover {
+  color: var(--accent);
+}
+
+/* ── Page Layout ── */
+.entry-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+
+/* ── Page Header ── */
+.entry-header {
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1.5px solid var(--border);
+  position: relative;
+}
+
+.entry-header::before {
+  content: "✍";
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.entry-header h2 {
+  font-family: var(--font-head);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.entry-header p {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Form ── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Each label+input+error group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Labels ── */
+label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Inputs ── */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+  width: 100%;
+  background: var(--field-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(26,26,24,0.08);
+}
+
+textarea {
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+/* ── File Input ── */
+input[type="file"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--field-bg);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+input[type="file"]:hover {
+  border-color: var(--ink);
+}
+
+/* ── Select / Multi-select ── */
+select[multiple] {
+  min-height: 120px;
+  padding: 0.5rem;
+}
+
+select[multiple] option {
+  padding: 0.4rem 0.6rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+select[multiple] option:checked {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ── Error Messages ── */
+.errorlist {
+  list-style: none;
+  margin-top: 0.3rem;
+}
+
+.errorlist li {
+  font-size: 0.8rem;
+  color: var(--error);
+  letter-spacing: 0.02em;
+}
+
+/* ── Divider between sections ── */
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.5rem 0;
+}
+
+/* ── Author section label ── */
+.section-label {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: -0.5rem;
+}
+
+/* ── Submit Button ── */
+button[type="submit"] {
+  align-self: flex-start;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.9rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
+}
+
+button[type="submit"]:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  #main-navigation {
+    padding: 1rem 1.5rem;
+  }
+
+  .entry-page {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .entry-header h2 {
+    font-size: 2rem;
+  }
+}

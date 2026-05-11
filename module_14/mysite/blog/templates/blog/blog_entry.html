@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Blog Entry Form{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/blog_entry.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="entry-page">
+  <div class="entry-header">
+    <h2>Write a New Post</h2>
+    <p>Share your story with the world.</p>
+  </div>
+
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button type="submit">Publish Post</button>
+  </form>
+</div>
+{% endblock %}

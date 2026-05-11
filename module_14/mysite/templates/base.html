@@ -16,7 +16,10 @@
     <header id="main-navigation">
     <h1><a href="{% url "starting_page" %}"> Saksham's Blog</a></h1>
     <nav>
+        <a href="{% url "read_later" %}">Stored Posts</a>
         <a href="{% url "posts_page" %}">All Posts</a>
+        <a href="{% url "blog_entry" %}">Write Blog</a>
+        
     </nav>
 </header>
     {% block content %}

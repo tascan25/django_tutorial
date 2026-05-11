@@ -14,7 +14,7 @@ Post Detail page
     <h2>{{detailedPost.title}}</h2>
     <article>
         <img src="{% static "blog/images/"|add:detailedPost.image %}" alt="post title">
-        <address>By {{detailedPost.author}}</address>
+        <a href="mailto:{{detailedPost.author.email_address}}"><address>By {{detailedPost.author}}</address></a>
         <div>
             last updated on <time datetime="">{{detailedPost.date|date:"d M Y"}}</time>
         </div>
@@ -26,4 +26,6 @@ Post Detail page
         {{detailedPost.content|linebreaks}}
     </p>
 </main>
+
+
 {% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Stored Posts
+{% endblock title %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "blog/stored_post.css" %}">
+{% endblock css_files %}
+
+
+{% block content %}
+<section id="stored-posts">
+    {% if has_posts %}
+            <ul>
+    {% for post in posts %}
+    <a href="{% url "posts_detail_page" post.slug %}">
+        <li>
+            {{post.title}}
+        </li>
+    </a>
+    {% endfor %}
+</ul>
+
+    {% else %}
+
+    <h2>No posts has been added to the read later section till now</h2>
+    <h3>Hope wanna add some !!!</h3>
+        
+    {% endif %}
+
+</section>
+
+{% endblock content %}
